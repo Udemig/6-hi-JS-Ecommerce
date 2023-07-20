@@ -1,5 +1,7 @@
 # E-Ticaret
 
+<a href="https://simple-e-ticaret.netlify.app/">Canlı Önizleme</a>
+
 # Kaynaklar
 
 - Api: https://fakeapi.platzi.com/
@@ -12,3 +14,4 @@
 - - sayfa yüklendiği anda istek at
 - - `categories` uç noktasına istek at ve cevabı al
 - - gelen cevaptaki her bir kategori için ekrana bir kategori kartı bas
+
