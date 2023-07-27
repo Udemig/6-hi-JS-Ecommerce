@@ -26,10 +26,18 @@
 - - başlangıçta display none, sepet butonuan tıklanılırsa display : block/grid/flex olucak
 
 - Sepet Ekleme İşlemi:
-- - sepete ekle butonlarına tıklanılınca ekleme fonksiyonu çalıştır
+- - sepete ekle butonlarına tıklanılınca bir fonksiyon çalıştır
 - - çalışan fonksiyonda sepete eklenicek elemanın bütün bilgilerini al
-- - septte var mı kontrol et
+- - ürün sepette var mı kontrol et
 - - varsa miktarını arttır
 - - toksa sepet dizisine akle
 
 - Modal açılınca modal içerisine elemanları listele
+
+- Sepetten ürün çıkarma
+
+- - çöp butonuna tıklanılınca bir fonksiyon çalıştır
+- - fonksiyon: silinecek ürünün bilgisini alma
+- - ürünü `basket dizisinden` kaldır
+- - ekranadki ürün listesini güncelle
+- - toplam bilgisini güncelle

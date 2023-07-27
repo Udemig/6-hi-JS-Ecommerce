@@ -6,6 +6,8 @@ const closeBtn = document.querySelector('#close');
 const modal = document.querySelector('.modal-wrapper');
 const basketList = document.querySelector('#list');
 const totalSpan = document.querySelector('#total-price');
+const totalCount = document.querySelector('#count');
+
 //! API İşlemleri
 // html'in yüklenme anı
 document.addEventListener('DOMContentLoaded', () => {
@@ -121,8 +123,6 @@ function addToBasket(product) {
   // ürün sepete daha önce eklendi mi ?
   const found = basket.find((i) => i.id === product.id);
 
-  console.log(found);
-
   if (found) {
     // eleman sepette var > miktarı arttır
     found.amount++;
@@ -130,8 +130,6 @@ function addToBasket(product) {
     // eleman sepette yok > sepete ekle
     basket.push(product);
   }
-
-  console.log(basket);
 }
 
 // sepete elemaları listeleme
@@ -145,7 +143,7 @@ function renderBasket() {
             <h3 class="title">${product.title}</h3>
             <h4 class="price">${product.price} &#8378;</h4>
             <p>Miktar: ${product.amount}</p>
-            <img id="delete" src="/images/e-trash.png" />
+            <img onclick="deleteItem(${product.id})" id="delete" src="/images/e-trash.png" />
       </div>
   `
     )
@@ -158,11 +156,29 @@ function renderBasket() {
   calculateTotal();
 }
 
-// septe toplamı ayarlama
+// sepette toplam bölümünü ayarlama
 function calculateTotal() {
-  // toplamı hesaplama
-  const sum = basket.reduce((sum, i) => sum + i.price, 0);
+  // toplam fiyatı hesaplama
+  const sum = basket.reduce((sum, i) => sum + i.price * i.amount, 0);
+
+  // ürün miktarını hesaplama
+  const amount = basket.reduce((sum, i) => sum + i.amount, 0);
+
+  // miktarı html'e gönderme
+  totalCount.innerText = amount + ' ' + 'Ürün';
 
   // toplam değeri html'e gönderme
   totalSpan.innerText = sum;
+}
+
+// sepetten ürünü silme fonksiyonu
+function deleteItem(deleteid) {
+  // kladırılacak ürün dışışındaki bütün ürünleri al
+  basket = basket.filter((i) => i.id !== deleteid);
+
+  // listeyi güncelle
+  renderBasket();
+
+  // toplamı güncelle
+  calculateTotal();
 }
